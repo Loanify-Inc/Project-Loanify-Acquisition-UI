@@ -3518,7 +3518,9 @@
         STYLE_BACKGROUND_COLOR: "STYLE_BACKGROUND_COLOR",
         STYLE_BORDER: "STYLE_BORDER",
         STYLE_TEXT_COLOR: "STYLE_TEXT_COLOR",
+        OBJECT_VALUE: "OBJECT_VALUE",
         PLUGIN_LOTTIE: "PLUGIN_LOTTIE",
+        PLUGIN_SPLINE: "PLUGIN_SPLINE",
         GENERAL_DISPLAY: "GENERAL_DISPLAY",
         GENERAL_START_ACTION: "GENERAL_START_ACTION",
         GENERAL_CONTINUOUS_ACTION: "GENERAL_CONTINUOUS_ACTION",
@@ -4630,8 +4632,8 @@
     "node_modules/lodash/_Map.js"(exports, module) {
       var getNative = require_getNative();
       var root = require_root();
-      var Map = getNative(root, "Map");
-      module.exports = Map;
+      var Map2 = getNative(root, "Map");
+      module.exports = Map2;
     }
   });
 
@@ -4746,12 +4748,12 @@
     "node_modules/lodash/_mapCacheClear.js"(exports, module) {
       var Hash = require_Hash();
       var ListCache = require_ListCache();
-      var Map = require_Map();
+      var Map2 = require_Map();
       function mapCacheClear() {
         this.size = 0;
         this.__data__ = {
           "hash": new Hash(),
-          "map": new (Map || ListCache)(),
+          "map": new (Map2 || ListCache)(),
           "string": new Hash()
         };
       }
@@ -4860,14 +4862,14 @@
   var require_stackSet = __commonJS({
     "node_modules/lodash/_stackSet.js"(exports, module) {
       var ListCache = require_ListCache();
-      var Map = require_Map();
+      var Map2 = require_Map();
       var MapCache = require_MapCache();
       var LARGE_ARRAY_SIZE = 200;
       function stackSet(key, value) {
         var data = this.__data__;
         if (data instanceof ListCache) {
           var pairs = data.__data__;
-          if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
+          if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
             pairs.push([key, value]);
             this.size = ++data.size;
             return this;
@@ -5608,7 +5610,7 @@
   var require_getTag = __commonJS({
     "node_modules/lodash/_getTag.js"(exports, module) {
       var DataView = require_DataView();
-      var Map = require_Map();
+      var Map2 = require_Map();
       var Promise2 = require_Promise();
       var Set = require_Set();
       var WeakMap2 = require_WeakMap();
@@ -5621,12 +5623,12 @@
       var weakMapTag = "[object WeakMap]";
       var dataViewTag = "[object DataView]";
       var dataViewCtorString = toSource(DataView);
-      var mapCtorString = toSource(Map);
+      var mapCtorString = toSource(Map2);
       var promiseCtorString = toSource(Promise2);
       var setCtorString = toSource(Set);
       var weakMapCtorString = toSource(WeakMap2);
       var getTag = baseGetTag;
-      if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap2 && getTag(new WeakMap2()) != weakMapTag) {
+      if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map2 && getTag(new Map2()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap2 && getTag(new WeakMap2()) != weakMapTag) {
         getTag = function(value) {
           var result = baseGetTag(value), Ctor = result == objectTag ? value.constructor : void 0, ctorString = Ctor ? toSource(Ctor) : "";
           if (ctorString) {
@@ -6918,9 +6920,9 @@
     }
   });
 
-  // packages/systems/ix2/lottie/IX2LottieUtils.js
-  var require_IX2LottieUtils = __commonJS({
-    "packages/systems/ix2/lottie/IX2LottieUtils.js"(exports) {
+  // packages/systems/ix2/plugins/IX2Lottie.js
+  var require_IX2Lottie = __commonJS({
+    "packages/systems/ix2/plugins/IX2Lottie.js"(exports) {
       "use strict";
       Object.defineProperty(exports, "__esModule", {
         value: true
@@ -6976,6 +6978,136 @@
     }
   });
 
+  // packages/systems/ix2/plugins/IX2Spline.js
+  var require_IX2Spline = __commonJS({
+    "packages/systems/ix2/plugins/IX2Spline.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      exports.renderPlugin = exports.getPluginOrigin = exports.getPluginDuration = exports.getPluginDestination = exports.getPluginConfig = exports.createPluginInstance = exports.clearPlugin = void 0;
+      var queryContainerElement = (elementId) => document.querySelector(`[data-w-id="${elementId}"]`);
+      var getFrontendModule = () => window.Webflow.require("spline");
+      var difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
+      var getPluginConfig = (actionItemConfig, key) => {
+        return actionItemConfig.value[key];
+      };
+      exports.getPluginConfig = getPluginConfig;
+      var getPluginDuration = () => {
+        return null;
+      };
+      exports.getPluginDuration = getPluginDuration;
+      var DEFAULT_VALUES = Object.freeze({
+        positionX: 0,
+        positionY: 0,
+        positionZ: 0,
+        rotationX: 0,
+        rotationY: 0,
+        rotationZ: 0,
+        scaleX: 1,
+        scaleY: 1,
+        scaleZ: 1
+      });
+      var getPluginOrigin = (refState, actionItem) => {
+        const destination = actionItem.config.value;
+        const destinationKeys = Object.keys(destination);
+        if (refState) {
+          const stateKeys = Object.keys(refState);
+          const diffKeys = difference(destinationKeys, stateKeys);
+          if (diffKeys.length) {
+            const origin2 = diffKeys.reduce((result, key) => {
+              result[key] = DEFAULT_VALUES[key];
+              return result;
+            }, refState);
+            return origin2;
+          }
+          return refState;
+        }
+        const origin = destinationKeys.reduce((result, key) => {
+          result[key] = DEFAULT_VALUES[key];
+          return result;
+        }, {});
+        return origin;
+      };
+      exports.getPluginOrigin = getPluginOrigin;
+      var getPluginDestination = (actionItemConfig) => {
+        return actionItemConfig.value;
+      };
+      exports.getPluginDestination = getPluginDestination;
+      var createPluginInstance = (element, actionItem) => {
+        var _actionItem$config, _actionItem$config$ta;
+        const pluginElementId = actionItem === null || actionItem === void 0 ? void 0 : (_actionItem$config = actionItem.config) === null || _actionItem$config === void 0 ? void 0 : (_actionItem$config$ta = _actionItem$config.target) === null || _actionItem$config$ta === void 0 ? void 0 : _actionItem$config$ta.pluginElement;
+        return pluginElementId ? queryContainerElement(pluginElementId) : null;
+      };
+      exports.createPluginInstance = createPluginInstance;
+      var renderPlugin = (containerElement, refState, actionItem) => {
+        const instance = getFrontendModule().getInstance(containerElement);
+        const objectId = actionItem.config.target.objectId;
+        if (!instance || !objectId) {
+          return;
+        }
+        const obj = instance.spline.findObjectById(objectId);
+        if (!obj) {
+          return;
+        }
+        const {
+          PLUGIN_SPLINE: props
+        } = refState;
+        if (props.positionX != null) {
+          obj.position.x = props.positionX;
+        }
+        if (props.positionY != null) {
+          obj.position.y = props.positionY;
+        }
+        if (props.positionZ != null) {
+          obj.position.z = props.positionZ;
+        }
+        if (props.rotationX != null) {
+          obj.rotation.x = props.rotationX;
+        }
+        if (props.rotationY != null) {
+          obj.rotation.y = props.rotationY;
+        }
+        if (props.rotationZ != null) {
+          obj.rotation.z = props.rotationZ;
+        }
+        if (props.scaleX != null) {
+          obj.scale.x = props.scaleX;
+        }
+        if (props.scaleY != null) {
+          obj.scale.y = props.scaleY;
+        }
+        if (props.scaleZ != null) {
+          obj.scale.z = props.scaleZ;
+        }
+      };
+      exports.renderPlugin = renderPlugin;
+      var clearPlugin = () => {
+        return null;
+      };
+      exports.clearPlugin = clearPlugin;
+    }
+  });
+
+  // packages/systems/ix2/plugins/index.js
+  var require_plugins = __commonJS({
+    "packages/systems/ix2/plugins/index.js"(exports) {
+      "use strict";
+      var _interopRequireWildcard = require_interopRequireWildcard().default;
+      var _interopRequireDefault = require_interopRequireDefault().default;
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      exports.pluginMethodMap = void 0;
+      var _extends2 = _interopRequireDefault(require_extends());
+      var _constants = require_constants();
+      var lottie = _interopRequireWildcard(require_IX2Lottie());
+      var spline = _interopRequireWildcard(require_IX2Spline());
+      var pluginMethodMap = /* @__PURE__ */ new Map([[_constants.ActionTypeConsts.PLUGIN_LOTTIE, (0, _extends2.default)({}, lottie)], [_constants.ActionTypeConsts.PLUGIN_SPLINE, (0, _extends2.default)({}, spline)]]);
+      exports.pluginMethodMap = pluginMethodMap;
+    }
+  });
+
   // packages/systems/ix2/shared/logic/IX2VanillaPlugins.js
   var require_IX2VanillaPlugins = __commonJS({
     "packages/systems/ix2/shared/logic/IX2VanillaPlugins.js"(exports) {
@@ -6986,28 +7118,16 @@
       exports.getPluginOrigin = exports.getPluginDuration = exports.getPluginDestination = exports.getPluginConfig = exports.createPluginInstance = exports.clearPlugin = void 0;
       exports.isPluginType = isPluginType;
       exports.renderPlugin = void 0;
-      var _IX2LottieUtils = require_IX2LottieUtils();
-      var _constants = require_constants();
       var _IX2BrowserSupport = require_IX2BrowserSupport();
-      var pluginMethodMap = {
-        [_constants.ActionTypeConsts.PLUGIN_LOTTIE]: {
-          getConfig: _IX2LottieUtils.getPluginConfig,
-          getOrigin: _IX2LottieUtils.getPluginOrigin,
-          getDuration: _IX2LottieUtils.getPluginDuration,
-          getDestination: _IX2LottieUtils.getPluginDestination,
-          createInstance: _IX2LottieUtils.createPluginInstance,
-          render: _IX2LottieUtils.renderPlugin,
-          clear: _IX2LottieUtils.clearPlugin
-        }
-      };
+      var _plugins = require_plugins();
       function isPluginType(actionTypeId) {
-        return actionTypeId === _constants.ActionTypeConsts.PLUGIN_LOTTIE;
+        return _plugins.pluginMethodMap.has(actionTypeId);
       }
       var pluginMethod = (methodName) => (actionTypeId) => {
         if (!_IX2BrowserSupport.IS_BROWSER_ENV) {
           return () => null;
         }
-        const plugin = pluginMethodMap[actionTypeId];
+        const plugin = _plugins.pluginMethodMap.get(actionTypeId);
         if (!plugin) {
           throw new Error(`IX2 no plugin configured for: ${actionTypeId}`);
         }
@@ -7017,19 +7137,19 @@
         }
         return method;
       };
-      var getPluginConfig = pluginMethod("getConfig");
+      var getPluginConfig = pluginMethod("getPluginConfig");
       exports.getPluginConfig = getPluginConfig;
-      var getPluginOrigin = pluginMethod("getOrigin");
+      var getPluginOrigin = pluginMethod("getPluginOrigin");
       exports.getPluginOrigin = getPluginOrigin;
-      var getPluginDuration = pluginMethod("getDuration");
+      var getPluginDuration = pluginMethod("getPluginDuration");
       exports.getPluginDuration = getPluginDuration;
-      var getPluginDestination = pluginMethod("getDestination");
+      var getPluginDestination = pluginMethod("getPluginDestination");
       exports.getPluginDestination = getPluginDestination;
-      var createPluginInstance = pluginMethod("createInstance");
+      var createPluginInstance = pluginMethod("createPluginInstance");
       exports.createPluginInstance = createPluginInstance;
-      var renderPlugin = pluginMethod("render");
+      var renderPlugin = pluginMethod("renderPlugin");
       exports.renderPlugin = renderPlugin;
-      var clearPlugin = pluginMethod("clear");
+      var clearPlugin = pluginMethod("clearPlugin");
       exports.clearPlugin = clearPlugin;
     }
   });
@@ -7248,6 +7368,7 @@
       });
       exports.cleanupHTMLElement = cleanupHTMLElement;
       exports.clearAllStyles = clearAllStyles;
+      exports.clearObjectCache = clearObjectCache;
       exports.getActionListProgress = getActionListProgress;
       exports.getAffectedElements = getAffectedElements;
       exports.getComputedStyle = getComputedStyle;
@@ -7329,9 +7450,9 @@
         STYLE_BACKGROUND_COLOR,
         STYLE_BORDER,
         STYLE_TEXT_COLOR,
-        GENERAL_DISPLAY
+        GENERAL_DISPLAY,
+        OBJECT_VALUE
       } = _constants.ActionTypeConsts;
-      var OBJECT_VALUE = "OBJECT_VALUE";
       var trim = (v) => v.trim();
       var colorStyleProps = Object.freeze({
         [STYLE_BACKGROUND_COLOR]: BACKGROUND_COLOR,
@@ -7348,7 +7469,10 @@
         [HEIGHT]: HEIGHT,
         [FONT_VARIATION_SETTINGS]: FONT_VARIATION_SETTINGS
       });
-      var objectCache = {};
+      var objectCache = /* @__PURE__ */ new Map();
+      function clearObjectCache() {
+        objectCache.clear();
+      }
       var instanceCount = 1;
       function getInstanceId() {
         return "i" + instanceCount++;
@@ -7503,7 +7627,7 @@
           useEventTarget
         } = normalizeTarget(target);
         if (objectId) {
-          const ref = objectCache[objectId] || (objectCache[objectId] = {});
+          const ref = objectCache.has(objectId) ? objectCache.get(objectId) : objectCache.set(objectId, {}).get(objectId);
           return [ref];
         }
         if (appliesTo === _constants.EventAppliesTo.PAGE) {
@@ -7604,7 +7728,7 @@
           actionTypeId
         } = actionItem;
         if ((0, _IX2VanillaPlugins.isPluginType)(actionTypeId)) {
-          return (0, _IX2VanillaPlugins.getPluginOrigin)(actionTypeId)(refState[actionTypeId]);
+          return (0, _IX2VanillaPlugins.getPluginOrigin)(actionTypeId)(refState[actionTypeId], actionItem);
         }
         switch (actionItem.actionTypeId) {
           case TRANSFORM_MOVE:
@@ -8361,6 +8485,9 @@
       function stringifyTarget(target) {
         if (typeof target === "string") {
           return target;
+        }
+        if (target.pluginElement && target.objectId) {
+          return target.pluginElement + BAR_DELIMITER + target.objectId;
         }
         const {
           id = "",
@@ -10966,6 +11093,7 @@
         getNamespacedParameterId,
         shouldAllowMediaQuery,
         cleanupHTMLElement,
+        clearObjectCache,
         stringifyTarget,
         mediaQueriesEqual,
         shallowEqual
@@ -11199,6 +11327,7 @@
             eventListeners
           } = ixSession;
           eventListeners.forEach(clearEventListener);
+          clearObjectCache();
           store.dispatch((0, _IX2EngineActions.sessionStopped)());
         }
       }
@@ -11812,9 +11941,12 @@
         const {
           element,
           actionItem,
+          // $FlowIgnore - Flow 0.121.0
           immediate,
           pluginInstance,
+          // $FlowIgnore - Flow 0.121.0
           continuous,
+          // $FlowIgnore - Flow 0.121.0
           restingValue,
           eventId
         } = rest;
@@ -11959,11 +12091,8 @@
               refState
             } = ixElements[elementId] || {};
             const actionState = refState && refState[actionTypeId];
-            switch (refType) {
-              case HTML_ELEMENT: {
-                renderHTMLElement(ref, refState, actionState, eventId, actionItem, styleProp, elementApi, renderType, pluginInstance);
-                break;
-              }
+            if (refType === HTML_ELEMENT || isPluginType(actionTypeId)) {
+              renderHTMLElement(ref, refState, actionState, eventId, actionItem, styleProp, elementApi, renderType, pluginInstance);
             }
           }
           if (complete) {
@@ -14029,5 +14158,5 @@ timm/lib/timm.js:
  * Webflow: Interactions 2.0: Init
  */
 Webflow.require('ix2').init(
-{"events":{"e":{"id":"e","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-2"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c9133909d76d0d1b33776b|af82b661-d812-1d67-3753-efe092d4d905","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c9133909d76d0d1b33776b|af82b661-d812-1d67-3753-efe092d4d905","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1650090518138},"e-2":{"id":"e-2","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c9133909d76d0d1b33776b|af82b661-d812-1d67-3753-efe092d4d905","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c9133909d76d0d1b33776b|af82b661-d812-1d67-3753-efe092d4d905","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1650090518138},"e-3":{"id":"e-3","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-4"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c945bd9cff56e69cd07b2e|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c945bd9cff56e69cd07b2e|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674135808648},"e-4":{"id":"e-4","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-3"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c945bd9cff56e69cd07b2e|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c945bd9cff56e69cd07b2e|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674135808648},"e-5":{"id":"e-5","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-6"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c954eeca1448036cfbd9db|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c954eeca1448036cfbd9db|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674138861887},"e-6":{"id":"e-6","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-5"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c954eeca1448036cfbd9db|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c954eeca1448036cfbd9db|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674138861887},"e-7":{"id":"e-7","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-8"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c95766be6c2f760d9aff59|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c95766be6c2f760d9aff59|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674139492818},"e-8":{"id":"e-8","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-7"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c95766be6c2f760d9aff59|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c95766be6c2f760d9aff59|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674139492818},"e-9":{"id":"e-9","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-10"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c9586c4f174b7826237f9f|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c9586c4f174b7826237f9f|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674139755418},"e-10":{"id":"e-10","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-9"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63c9586c4f174b7826237f9f|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63c9586c4f174b7826237f9f|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674139755418},"e-11":{"id":"e-11","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-12"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63ca63888ad39300db3acbda|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63ca63888ad39300db3acbda|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674208166690},"e-12":{"id":"e-12","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-11"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"63ca63888ad39300db3acbda|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"63ca63888ad39300db3acbda|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674208166690}},"actionLists":{"a":{"id":"a","title":"Navbar menu -> OPEN","actionItemGroups":[{"actionItems":[{"id":"a-n","actionTypeId":"STYLE_SIZE","config":{"delay":0,"easing":"inOutQuint","duration":200,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-middle","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda40"]},"widthValue":0,"widthUnit":"px","heightUnit":"PX","locked":false}},{"id":"a-n-2","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"yValue":-8,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-n-3","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"yValue":8,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-n-4","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"zValue":-45,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}},{"id":"a-n-5","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"zValue":45,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}}]}],"useFirstGroupAsInitialState":false,"createdOn":1626168378054},"a-2":{"id":"a-2","title":"Navbar menu -> CLOSE","actionItemGroups":[{"actionItems":[{"id":"a-2-n","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"yValue":0,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-2-n-2","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"yValue":0,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-2-n-3","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"zValue":0,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}},{"id":"a-2-n-4","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"zValue":0,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}},{"id":"a-2-n-5","actionTypeId":"STYLE_SIZE","config":{"delay":400,"easing":"inOutQuint","duration":200,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-middle","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda40"]},"widthValue":24,"widthUnit":"px","heightUnit":"PX","locked":false}}]}],"useFirstGroupAsInitialState":false,"createdOn":1626168766736}},"site":{"mediaQueries":[{"key":"main","min":992,"max":10000},{"key":"medium","min":768,"max":991},{"key":"small","min":480,"max":767},{"key":"tiny","min":0,"max":479}]}}
+{"events":{"e-3":{"id":"e-3","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-4"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"64cd61f63db6d8698fe52a52|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"64cd61f63db6d8698fe52a52|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674135808648},"e-4":{"id":"e-4","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-3"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"64cd61f63db6d8698fe52a52|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"64cd61f63db6d8698fe52a52|15454f87-7056-a9a3-b85a-b565450c8c96","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674135808648},"e-11":{"id":"e-11","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-12"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"64cd61f63db6d8698fe52a4f|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"64cd61f63db6d8698fe52a4f|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674208166690},"e-12":{"id":"e-12","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-11"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"64cd61f63db6d8698fe52a4f|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"64cd61f63db6d8698fe52a4f|9dd78c7a-5505-89a2-cf2b-528e4222cb23","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1674208166690},"e-13":{"id":"e-13","name":"","animationType":"preset","eventTypeId":"NAVBAR_OPEN","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-14"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"64cd61f63db6d8698fe52a58|3782afbc-929d-03d0-c26c-3f2a794e4f59","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"64cd61f63db6d8698fe52a58|3782afbc-929d-03d0-c26c-3f2a794e4f59","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1686499874379},"e-14":{"id":"e-14","name":"","animationType":"preset","eventTypeId":"NAVBAR_CLOSE","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-2","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-13"}},"mediaQueries":["main","medium","small","tiny"],"target":{"id":"64cd61f63db6d8698fe52a58|3782afbc-929d-03d0-c26c-3f2a794e4f59","appliesTo":"ELEMENT","styleBlockIds":[]},"targets":[{"id":"64cd61f63db6d8698fe52a58|3782afbc-929d-03d0-c26c-3f2a794e4f59","appliesTo":"ELEMENT","styleBlockIds":[]}],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1686499874379},"e-51":{"id":"e-51","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-30","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-52"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|9dd78c7a-5505-89a2-cf2b-528e4222cb9e"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691185675488},"e-53":{"id":"e-53","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-31","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-54"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|2cf04497-555f-0aeb-deac-b20273a41fce"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691185975176},"e-55":{"id":"e-55","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-30","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-56"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|a87f556c-6c76-9c01-8e97-2259c97ba725"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691186102929},"e-57":{"id":"e-57","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-30","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-58"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|b69f3e0a-ee40-032c-7f21-9011e2f88798"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691186128361},"e-59":{"id":"e-59","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-30","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-60"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|9dd78c7a-5505-89a2-cf2b-528e4222cc5e"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691186144241},"e-61":{"id":"e-61","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-30","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-62"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|b6db8720-3cbe-12ad-ae1e-14b3eb581e69"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691186880210},"e-63":{"id":"e-63","name":"","animationType":"custom","eventTypeId":"MOUSE_CLICK","action":{"id":"","actionTypeId":"GENERAL_START_ACTION","config":{"delay":0,"easing":"","duration":0,"actionListId":"a-30","affectedElements":{},"playInReverse":false,"autoStopEventId":"e-64"}},"mediaQueries":["main","medium","small","tiny"],"target":{"appliesTo":"ELEMENT","styleBlockIds":[],"id":"64cd61f63db6d8698fe52a4f|0be77040-1f85-6295-e328-f7ab569f767c"},"targets":[],"config":{"loop":false,"playInReverse":false,"scrollOffsetValue":null,"scrollOffsetUnit":null,"delay":null,"direction":null,"effectIn":null},"createdOn":1691186892306}},"actionLists":{"a":{"id":"a","title":"Navbar menu -> OPEN","actionItemGroups":[{"actionItems":[{"id":"a-n","actionTypeId":"STYLE_SIZE","config":{"delay":0,"easing":"inOutQuint","duration":200,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-middle","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda40"]},"widthValue":0,"widthUnit":"px","heightUnit":"PX","locked":false}},{"id":"a-n-2","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"yValue":-8,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-n-3","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"yValue":8,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-n-4","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"zValue":-45,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}},{"id":"a-n-5","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"zValue":45,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}}]}],"useFirstGroupAsInitialState":false,"createdOn":1626168378054},"a-2":{"id":"a-2","title":"Navbar menu -> CLOSE","actionItemGroups":[{"actionItems":[{"id":"a-2-n","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"yValue":0,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-2-n-2","actionTypeId":"TRANSFORM_MOVE","config":{"delay":0,"easing":"inOutQuint","duration":600,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"yValue":0,"xUnit":"PX","yUnit":"px","zUnit":"PX"}},{"id":"a-2-n-3","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-bottom","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda3e"]},"zValue":0,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}},{"id":"a-2-n-4","actionTypeId":"TRANSFORM_ROTATE","config":{"delay":0,"easing":"inOutQuint","duration":400,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-top","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda41"]},"zValue":0,"xUnit":"DEG","yUnit":"DEG","zUnit":"deg"}},{"id":"a-2-n-5","actionTypeId":"STYLE_SIZE","config":{"delay":400,"easing":"inOutQuint","duration":200,"target":{"useEventTarget":"CHILDREN","selector":".menu-icon_line-middle","selectorGuids":["891d31b3-3a7a-a6c6-625c-677770beda40"]},"widthValue":24,"widthUnit":"px","heightUnit":"PX","locked":false}}]}],"useFirstGroupAsInitialState":false,"createdOn":1626168766736},"a-30":{"id":"a-30","title":"block-pop1","actionItemGroups":[{"actionItems":[{"id":"a-30-n","actionTypeId":"GENERAL_DISPLAY","config":{"delay":0,"easing":"","duration":0,"value":"none","target":{"selector":".div-block-5","selectorGuids":["d3b47bb8-309a-8cb1-41ad-ce1d3142becf"]}}}]},{"actionItems":[{"id":"a-30-n-2","actionTypeId":"GENERAL_DISPLAY","config":{"delay":0,"easing":"","duration":0,"value":"block","target":{"selector":".div-block-5","selectorGuids":["d3b47bb8-309a-8cb1-41ad-ce1d3142becf"]}}}]}],"createdOn":1691185682761,"useFirstGroupAsInitialState":true},"a-31":{"id":"a-31","title":"block-pop-close","actionItemGroups":[{"actionItems":[{"id":"a-31-n","actionTypeId":"GENERAL_DISPLAY","config":{"delay":0,"easing":"","duration":0,"value":"none","target":{"useEventTarget":"PARENT","selector":".div-block-5","selectorGuids":["d3b47bb8-309a-8cb1-41ad-ce1d3142becf"]}}}]}],"createdOn":1691185982674,"useFirstGroupAsInitialState":false}},"site":{"mediaQueries":[{"key":"main","min":992,"max":10000},{"key":"medium","min":768,"max":991},{"key":"small","min":480,"max":767},{"key":"tiny","min":0,"max":479}]}}
 );
