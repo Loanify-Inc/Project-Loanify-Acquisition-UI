@@ -621,7 +621,7 @@ margin: 0rem !important;
   async function serverSideTracking(eventName, eventUrl, eventId) {
     await axios
       .post(
-      "/server-side-tracking",
+      "server/server-side-tracking",
       {
         eventName: eventName,
         eventUrl: eventUrl,
