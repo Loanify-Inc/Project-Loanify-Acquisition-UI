@@ -2922,6 +2922,7 @@ figcaption {
 }
 
 .form-pop-up {
+  max-width: 450px;
   background-color: #fff;
   border-radius: 1rem;
   padding: 20px;
@@ -2979,6 +2980,10 @@ figcaption {
 
 .pop-up-bg.section.mt-0.position-static {
   position: fixed;
+}
+
+.pop-up-bg.section.mt-0.position-static.tempshow {
+  display: block;
 }
 
 .btn-x {
@@ -3194,6 +3199,21 @@ figcaption {
 
 .mt-2 {
   margin-top: 2rem;
+}
+
+.paragraph-2 {
+  color: #333;
+  text-align: center;
+}
+
+.paragraph-3 {
+  color: #333;
+}
+
+.paragraph-4 {
+  color: #333;
+  text-align: center;
+  font-size: .9rem;
 }
 
 @media screen and (min-width: 1280px) {
@@ -4681,12 +4701,6 @@ figcaption {
 
   .div-block-9 {
     width: 400%;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  #w-node-_6c463db6-ac1d-d018-5242-8aff5ce6624b-db3acbda {
-    grid-area: 1 / 1 / 2 / 2;
   }
 }
 
