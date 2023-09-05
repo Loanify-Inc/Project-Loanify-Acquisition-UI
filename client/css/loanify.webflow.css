@@ -2574,6 +2574,7 @@ figcaption {
 
 ._w-100.btn-submit.text-upper {
   text-transform: uppercase;
+  background-color: #1da1f2;
 }
 
 .nav-container-w-100 {
@@ -2957,7 +2958,8 @@ figcaption {
 }
 
 .text-span-3 {
-  color: #86bf4a;
+  color: #1da1f2;
+  -webkit-text-stroke-color: #1da1f2;
   font-weight: 700;
 }
 
@@ -4043,7 +4045,7 @@ figcaption {
 
   .home-hero {
     background-image: url('../images/background-tab.png');
-    background-position: 0 0;
+    background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: cover;
   }
