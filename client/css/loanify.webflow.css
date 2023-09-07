@@ -2956,6 +2956,7 @@ figcaption {
   border-radius: 1rem;
   padding: 20px;
   display: inline-block;
+  position: relative;
   box-shadow: 0 0 50px rgba(0, 0, 0, .3);
 }
 
@@ -3265,6 +3266,19 @@ figcaption {
   margin-top: 2rem;
   padding-top: 1rem;
   font-size: 14px;
+}
+
+.d-none {
+  display: none;
+}
+
+.html-embed-2 {
+  height: auto;
+}
+
+.div-block-20 {
+  max-height: 450px;
+  min-height: 200px;
 }
 
 @media screen and (min-width: 1280px) {
