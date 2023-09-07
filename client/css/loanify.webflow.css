@@ -2504,6 +2504,10 @@ figcaption {
   max-width: 1350px;
 }
 
+.container-90.mt-50 {
+  margin-top: 50px;
+}
+
 .menu-100 {
   width: 100%;
   justify-content: space-between;
@@ -2598,12 +2602,15 @@ figcaption {
 }
 
 .home-hero {
+  height: 100vh;
   background-image: url('../images/background-blue.png');
   background-position: 50% 0;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 150px;
-  padding-bottom: 100px;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
 }
 
 ._w-50 {
@@ -2612,8 +2619,9 @@ figcaption {
 
 .hero-h1 {
   color: #fff;
-  font-size: 70px;
-  line-height: 80px;
+  text-transform: uppercase;
+  font-size: 65px;
+  line-height: 110%;
 }
 
 .hero-p {
@@ -2623,7 +2631,7 @@ figcaption {
   font-family: Manrope, sans-serif;
   font-size: 30px;
   font-weight: 400;
-  line-height: 45px;
+  line-height: 40px;
 }
 
 .hero-bullet-list {
@@ -2727,7 +2735,7 @@ figcaption {
 }
 
 ._w-50-tab-100 {
-  width: 50%;
+  width: 60%;
 }
 
 .d-flex-h-tab-v {
@@ -3243,6 +3251,22 @@ figcaption {
   -webkit-text-stroke-color: #1da1f2;
 }
 
+.desclaimer {
+  margin-top: .25rem;
+}
+
+.paragraph-5 {
+  text-align: center;
+}
+
+.paragraph-6 {
+  text-align: center;
+  border-top: 1px solid #737373;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  font-size: 14px;
+}
+
 @media screen and (min-width: 1280px) {
   .testimonial-bottom-text {
     margin-top: 140px;
@@ -3289,6 +3313,11 @@ figcaption {
 
   .container-90.inner-container {
     width: 80%;
+  }
+
+  .hero-h1 {
+    font-size: 70px;
+    line-height: 120%;
   }
 
   .th {
@@ -3385,8 +3414,8 @@ figcaption {
   }
 
   .home-hero {
-    padding-top: 200px;
-    padding-bottom: 150px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   ._w-60-tab-100.d-flex-v-60 {
@@ -4043,11 +4072,19 @@ figcaption {
     top: -10px;
   }
 
+  .container-90.mt-50 {
+    margin-top: 0;
+  }
+
   .home-hero {
+    height: auto;
     background-image: url('../images/background-tab.png');
     background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 130px;
+    padding-bottom: 100px;
+    display: block;
   }
 
   .hero-h1 {
