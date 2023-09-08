@@ -2248,6 +2248,14 @@ figcaption {
   margin-top: 100px;
 }
 
+.section.mt-3.mt-1 {
+  margin-top: 50px;
+}
+
+.section.mt-3.mt-1.d-none.mt-0 {
+  margin-top: 0;
+}
+
 .text-block-3 {
   color: #333;
   font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal, sans-serif;
@@ -2947,7 +2955,7 @@ figcaption {
 }
 
 .div-block-15 {
-  height: 10px;
+  height: 25px;
 }
 
 .form-pop-up {
