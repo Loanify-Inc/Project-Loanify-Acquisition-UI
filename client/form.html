@@ -37,7 +37,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '810254530820108');
 fbq('track', 'PageView');
-fbq('trackCustom', 'Aplication Page View', { eventID: '3' });
+fbq('trackCustom', 'Application Page View', { eventID: '3' });
 </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=810254530820108&ev=PageView&noscript=1"></noscript>
   <!--  End Meta Pixel Code  -->
@@ -179,6 +179,26 @@ $(document).ready(function() {
     slider.next();
   });
 });
+</script>
+    <script>
+  //Server Side Tracking Function
+  async function serverSideTracking(eventName, eventUrl, eventId) {
+    await axios
+      .post(
+      "/server-side-tracking",
+      {
+        eventName: eventName,
+        eventUrl: eventUrl,
+        eventId: eventId
+      }
+    )
+      .then((response) => {
+      console.log("Success: " + response.data);
+    })
+      .catch((err) => console.log("Failed: " + err));
+  }
+  //Index Page Events
+  window.onload = serverSideTracking("Application Page View", window.location.href, "3");
 </script>
 </body>
 </html>
