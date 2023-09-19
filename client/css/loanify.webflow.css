@@ -2465,14 +2465,21 @@ figcaption {
 }
 
 .absolute-top {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: block;
   position: absolute;
   top: 0%;
   bottom: auto;
   left: 0%;
   right: 0%;
+}
+
+.absolute-top.stick-to-top {
+  background-color: rgba(0, 0, 0, .4);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  position: fixed;
 }
 
 .container-90 {
@@ -2760,6 +2767,11 @@ figcaption {
 .nav-btn.black {
   color: #000;
   border-color: #000;
+}
+
+.nav-btn.px-10 {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 ._w-50-tab-100 {
@@ -3359,13 +3371,32 @@ figcaption {
 .form-v2 {
   background-color: rgba(255, 255, 255, .2);
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
 }
 
 .h2-v2 {
   color: #fff;
   text-align: center;
   margin-bottom: .5rem;
+}
+
+.h2-v2.rfont {
+  font-size: 32px;
+}
+
+.h2-v2.rfibt-2 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.h2-v2.rfibt-2.strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.h2-v2.ifont {
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .html-embed-3 {
