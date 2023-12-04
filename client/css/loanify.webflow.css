@@ -3388,13 +3388,13 @@ figcaption {
 }
 
 ._w-45-lp-v2 {
-  width: 36%;
+  width: 39%;
 }
 
 .form-v2 {
   background-color: rgba(255, 255, 255, .2);
   border-radius: 10px;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.25rem;
 }
 
 .form-v2.p0 {
@@ -3445,8 +3445,7 @@ figcaption {
 
 .html-embed-3 {
   min-height: 10px;
-  margin-top: 10px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
 .d-flex-hr {
@@ -3592,6 +3591,14 @@ figcaption {
 
   .slide-nav-3, .left-arrow-3, .right-arrow-3 {
     display: none;
+  }
+
+  ._w-45-lp-v2 {
+    width: 35%;
+  }
+
+  .form-v2 {
+    padding: 1.5rem 2rem;
   }
 }
 
