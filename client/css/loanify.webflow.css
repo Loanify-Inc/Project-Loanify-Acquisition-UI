@@ -2698,6 +2698,38 @@ figcaption {
   background-size: cover;
 }
 
+.home-hero.ebook-1-bg {
+  background-image: url('../images/ebook-bg-1.png');
+  background-position: 50% 0;
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.home-hero.ebook-2-bg {
+  background-image: url('../images/ebook-bg-2.png');
+  background-position: 50% 0;
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.home-hero.ebook-3-bg {
+  background-image: url('../images/ebook-bg-3.png');
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.home-hero.ebook-4-bg {
+  background-image: url('../images/ebook-bg-4.png');
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.home-hero.ebook-5-bg {
+  background-image: url('../images/ebook-bg-5.png');
+  background-repeat: repeat;
+  background-size: cover;
+}
+
 ._w-50 {
   width: 50%;
 }
@@ -4980,6 +5012,13 @@ figcaption {
     background-size: cover;
   }
 
+  .home-hero.ebook-3-bg {
+    background-image: url('../images/ebook-bg-3.png');
+    background-position: 25% 0;
+    background-repeat: repeat;
+    background-size: cover;
+  }
+
   .hero-h1 {
     font-size: 58px;
     line-height: 120%;
@@ -5845,6 +5884,41 @@ figcaption {
 
   .home-hero.bg-new-lander5 {
     background-position: 25%;
+  }
+
+  .home-hero.ebook-1-bg {
+    background-image: url('../images/ebook-bg-1-sm.png');
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .home-hero.ebook-2-bg {
+    background-image: url('../images/ebook-bg-2-sm.png');
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .home-hero.ebook-3-bg {
+    background-image: url('../images/ebook-bg-3-sm.png');
+    background-position: 50% 0;
+    background-repeat: repeat-y;
+    background-size: cover;
+  }
+
+  .home-hero.ebook-4-bg {
+    background-image: url('../images/ebook-bg-4-sm.png'), linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+    background-position: 50% 0, 0 0;
+    background-repeat: no-repeat, repeat;
+    background-size: cover, auto;
+  }
+
+  .home-hero.ebook-5-bg {
+    background-image: url('../images/ebook-bg-5-sm.png'), linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+    background-position: 50% 0, 0 0;
+    background-repeat: no-repeat, repeat;
+    background-size: cover, auto;
   }
 
   .hero-h1 {
