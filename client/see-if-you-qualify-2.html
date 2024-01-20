@@ -81,6 +81,26 @@
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
+  <style>
+    .video-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: auto;
+    }
+
+    .video-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -118,10 +138,15 @@
           <div class="div-block-24">
             <div>
               <div class="e-book-embed-2 w-embed w-iframe w-script">
-                <iframe width="560" height="315"
-                  src="https://app.heygen.com/embeds/27bb16e61fbc43caa49f713dc1172f3b?autoplay=1&mute=1"
-                  title="HeyGen video player" frameborder="0" allow="autoplay; encrypted-media; fullscreen;"
-                  allowfullscreen></iframe>
+                <div class="video-container" onclick="playVideo(this)">
+                  <img src="https://res.cloudinary.com/dzjls7tei/image/upload/v1705742192/image_94_axv34g.png"
+                    alt="Video Thumbnail" class="video-thumbnail">
+                  <iframe width="560" height="315"
+                    src="https://app.heygen.com/embeds/27bb16e61fbc43caa49f713dc1172f3b?autoplay=1&mute=1"
+                    frameborder="0" allow="autoplay; encrypted-media; fullscreen;" allowfullscreen style="display:none;"
+                    class="video-iframe"></iframe>
+                </div>
+
               </div>
             </div>
           </div>
@@ -442,6 +467,18 @@
     //Index Page Events
     window.onload = serverSideTracking("See If You Qualify Page View", window.location.href, "13");
   </script>
+  <script>
+    function playVideo(container) {
+      var iframe = container.querySelector('.video-iframe');
+      var thumbnail = container.querySelector('.video-thumbnail');
+
+      thumbnail.style.display = 'none'; // Hide thumbnail
+      iframe.style.display = 'block';   // Show iframe
+
+      iframe.src += "&autoplay=1";      // Trigger autoplay
+    }
+  </script>
+
 </body>
 
 </html>
