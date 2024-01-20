@@ -480,12 +480,15 @@
       thumbnail.style.display = 'none'; // Hide thumbnail
       iframe.style.display = 'block';   // Show iframe
 
-      // Add a check to prevent re-adding "autoplay=1"
-      if (iframe.src.indexOf("&autoplay=1") < 0) {
-        iframe.src += "&autoplay=1"; // Trigger autoplay
+      // Attempt to play the video
+      var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      var video = iframeDoc.querySelector('video');
+      if (video) {
+        video.play().catch(e => console.error("Error attempting to play video: ", e));
       }
     }
   </script>
+
 
 
 </body>
