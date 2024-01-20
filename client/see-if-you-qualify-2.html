@@ -81,6 +81,8 @@
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
+  <link href="https://unpkg.com/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/cloudinary-video-player/dist/cld-video-player.min.js"></script>
 </head>
 
 <body>
@@ -118,12 +120,7 @@
           <div class="div-block-24">
             <div>
               <div class="e-book-embed-2 w-embed w-iframe w-script">
-                <iframe width="560" height="315"
-                  src="https://res.cloudinary.com/dzjls7tei/video/upload/v1705735718/Appointment_1_ceuddl.mp4#t=0.1&autoplay=1&loop=1&controls=1"
-                  title="HeyGen video player" frameborder="0" allow="autoplay; encrypted-media; fullscreen;"
-                  allowfullscreen></iframe>
-
-
+                <div id="my-video-player" style="width: 560px; height: 315px;"></div>
               </div>
             </div>
           </div>
@@ -442,6 +439,16 @@
     }
     //Index Page Events
     window.onload = serverSideTracking("See If You Qualify Page View", window.location.href, "13");
+  </script>
+  <script>
+    var cld = cloudinary.Cloudinary.new({ cloud_name: 'dzjls7tei' });
+    var player = cld.videoPlayer('my-video-player');
+    player.source('Appointment_1_ceuddl', {
+      sourceTypes: ['mp4'],
+      autoplay: true,
+      controls: true,
+      muted: true // This line ensures compatibility with browsers that restrict autoplay with sound
+    });
   </script>
 </body>
 
