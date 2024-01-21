@@ -4212,6 +4212,7 @@ figcaption {
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: 75px;
+  display: block;
   position: absolute;
   top: 0%;
   bottom: 0%;
@@ -5298,6 +5299,10 @@ figcaption {
 
   .vd-wrapper {
     width: 100%;
+  }
+
+  .platbtn-bg {
+    display: none;
   }
 
   .btnwrap {
