@@ -2666,7 +2666,17 @@ figcaption {
   display: flex;
 }
 
-.home-hero.bg-v2, .home-hero.e-book-background {
+.home-hero.bg-v2 {
+  background-image: url('../images/background-lp-v2.png');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.home-hero.bg-v2.home-100vh {
+  height: 100vh;
+}
+
+.home-hero.e-book-background {
   background-image: url('../images/background-lp-v2.png');
   background-position: 50%;
   background-size: cover;
@@ -2676,6 +2686,10 @@ figcaption {
   background-image: url('../images/new-f-bg.png');
   background-position: 50%;
   background-size: cover;
+}
+
+.home-hero.e-book-background.new-bg.min-height-100vh-img {
+  min-height: 100vh;
 }
 
 .home-hero.bg-lander1 {
@@ -2690,6 +2704,10 @@ figcaption {
   background-size: cover;
 }
 
+.home-hero.bg-new-lander1.home-vh100 {
+  height: 100vh;
+}
+
 .home-hero.bg-new-lander2 {
   background-image: url('../images/lander2.png');
   background-position: 50%;
@@ -2702,16 +2720,28 @@ figcaption {
   background-size: cover;
 }
 
+.home-hero.bg-new-lander3.h-100vh {
+  height: 100vh;
+}
+
 .home-hero.bg-new-lander4 {
   background-image: url('../images/lander4.png');
   background-position: 50%;
   background-size: cover;
 }
 
+.home-hero.bg-new-lander4.h-100vh {
+  height: 100vh;
+}
+
 .home-hero.bg-new-lander5 {
   background-image: url('../images/lander5.png');
   background-position: 50%;
   background-size: cover;
+}
+
+.home-hero.bg-new-lander5.h-100vh {
+  height: 100vh;
 }
 
 .home-hero.ebook-1-bg {
@@ -2721,11 +2751,19 @@ figcaption {
   background-size: cover;
 }
 
+.home-hero.ebook-1-bg.h-100vh {
+  height: 100vh;
+}
+
 .home-hero.ebook-2-bg {
   background-image: url('../images/ebook-bg-2.png');
   background-position: 50% 0;
   background-repeat: repeat;
   background-size: cover;
+}
+
+.home-hero.ebook-2-bg.h-100vh {
+  height: 100vh;
 }
 
 .home-hero.ebook-3-bg {
@@ -2734,16 +2772,28 @@ figcaption {
   background-size: cover;
 }
 
+.home-hero.ebook-3-bg.h-100vh {
+  height: 100vh;
+}
+
 .home-hero.ebook-4-bg {
   background-image: url('../images/ebook-bg-4.png');
   background-repeat: repeat;
   background-size: cover;
 }
 
+.home-hero.ebook-4-bg.h-100vh {
+  height: 100vh;
+}
+
 .home-hero.ebook-5-bg {
   background-image: url('../images/ebook-bg-5.png');
   background-repeat: repeat;
   background-size: cover;
+}
+
+.home-hero.ebook-5-bg.h-100vh {
+  height: 100vh;
 }
 
 ._w-50 {
@@ -3222,6 +3272,10 @@ figcaption {
   font-family: Poppins, sans-serif;
   font-size: 22px;
   font-weight: 400;
+}
+
+.text-block-8.text-white {
+  color: #fff;
 }
 
 .progress-bar-wrapper {
@@ -4151,6 +4205,10 @@ figcaption {
   display: none;
 }
 
+.amount-form-flex-video.pb-3rem {
+  padding-bottom: 3rem;
+}
+
 .form-amount-wrapper-copy {
   max-width: 800px;
   margin-left: auto;
@@ -4223,6 +4281,96 @@ figcaption {
 .btnwrap {
   width: 70%;
   margin: 10px auto 50px;
+}
+
+.div-block-27 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.div-block-28 {
+  width: 360px;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  background-color: #f3f3f3;
+  flex: 0 auto;
+  justify-content: center;
+  padding: 10px 15px;
+  display: flex;
+}
+
+.div-block-29 {
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.text-block-15 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.paragraph-10 {
+  font-size: 14px;
+  line-height: 130%;
+}
+
+.div-block-30 {
+  width: 80%;
+}
+
+.max-width-780 {
+  width: 100%;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading-6 {
+  color: #1da1f2;
+  font-family: Montserrat, sans-serif;
+  font-size: 30px;
+}
+
+.list-3 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 170%;
+}
+
+.text-span-6 {
+  font-weight: 400;
+}
+
+.div-block-31 {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.li-mb-1_5 {
+  margin-bottom: 1.5rem;
+}
+
+.paragraph-11 {
+  font-size: 22px;
+}
+
+.paragraph-12 {
+  color: #fff;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.div-block-32 {
+  width: 100%;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (min-width: 1280px) {
@@ -4412,6 +4560,10 @@ figcaption {
 
   .container-90.mt-50.new-mt-50 {
     margin-top: 0;
+  }
+
+  .container-90.mt-50.new-mt-50.new-mt-100 {
+    margin-top: 100px;
   }
 
   .home-hero {
@@ -5167,11 +5319,24 @@ figcaption {
     display: block;
   }
 
+  .home-hero.bg-v2.home-100vh {
+    height: auto;
+  }
+
+  .home-hero.e-book-background.new-bg.min-height-100vh-img {
+    background-image: linear-gradient(to bottom, null, null);
+    background-position: 0 0;
+  }
+
   .home-hero.bg-new-lander1 {
     background-image: url('../images/lander1.png');
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .home-hero.bg-new-lander1.home-vh100 {
+    height: auto;
   }
 
   .home-hero.bg-new-lander3 {
@@ -5181,6 +5346,10 @@ figcaption {
     background-size: cover;
   }
 
+  .home-hero.bg-new-lander3.h-100vh, .home-hero.bg-new-lander4.h-100vh {
+    height: auto;
+  }
+
   .home-hero.bg-new-lander5 {
     background-image: url('../images/lander5.png');
     background-position: 20%;
@@ -5188,11 +5357,27 @@ figcaption {
     background-size: cover;
   }
 
+  .home-hero.bg-new-lander5.h-100vh, .home-hero.ebook-1-bg.h-100vh {
+    height: auto;
+  }
+
+  .home-hero.ebook-2-bg {
+    background-position: 90% 0;
+  }
+
+  .home-hero.ebook-2-bg.h-100vh {
+    height: auto;
+  }
+
   .home-hero.ebook-3-bg {
     background-image: url('../images/ebook-bg-3.png');
     background-position: 25% 0;
     background-repeat: repeat;
     background-size: cover;
+  }
+
+  .home-hero.ebook-3-bg.h-100vh, .home-hero.ebook-4-bg.h-100vh, .home-hero.ebook-5-bg.h-100vh {
+    height: auto;
   }
 
   .hero-h1 {
