@@ -2709,7 +2709,7 @@ figcaption {
 }
 
 .home-hero.bg-new-lander2 {
-  background-image: url('../images/lander2.png');
+  background-image: url('../images/bg-2-1-2.png');
   background-position: 50%;
   background-size: cover;
 }
@@ -2722,6 +2722,7 @@ figcaption {
 
 .home-hero.bg-new-lander3.h-100vh {
   height: 100vh;
+  background-image: url('../images/bg-3-1.png');
 }
 
 .home-hero.bg-new-lander4 {
@@ -2732,6 +2733,7 @@ figcaption {
 
 .home-hero.bg-new-lander4.h-100vh {
   height: 100vh;
+  background-image: url('../images/bg-4-1.png');
 }
 
 .home-hero.bg-new-lander5 {
@@ -2742,6 +2744,7 @@ figcaption {
 
 .home-hero.bg-new-lander5.h-100vh {
   height: 100vh;
+  background-image: url('../images/bg-5-1.png');
 }
 
 .home-hero.ebook-1-bg {
