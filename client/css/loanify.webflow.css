@@ -2502,6 +2502,10 @@ figcaption {
   position: fixed;
 }
 
+.absolute-top.stick-to-top.hide {
+  display: none;
+}
+
 .container-90 {
   width: 90%;
   max-width: 1500px;
@@ -2699,7 +2703,7 @@ figcaption {
 }
 
 .home-hero.bg-new-lander1 {
-  background-image: url('../images/lander1.png');
+  background-image: url('../images/bg-1-1.png');
   background-position: 50%;
   background-size: cover;
 }
@@ -2709,7 +2713,7 @@ figcaption {
 }
 
 .home-hero.bg-new-lander2 {
-  background-image: url('../images/bg-2-1-2.png');
+  background-image: url('../images/bg-2-1.png');
   background-position: 50%;
   background-size: cover;
 }
@@ -2723,6 +2727,7 @@ figcaption {
 .home-hero.bg-new-lander3.h-100vh {
   height: 100vh;
   background-image: url('../images/bg-3-1.png');
+  background-position: 0%;
 }
 
 .home-hero.bg-new-lander4 {
@@ -2758,6 +2763,12 @@ figcaption {
   height: 100vh;
 }
 
+.home-hero.ebook-1-bg.h-100vh.bg29-ebook-1 {
+  background-image: url('../images/bg29-ebook-1.png');
+  background-position: 50% 0;
+  background-size: cover;
+}
+
 .home-hero.ebook-2-bg {
   background-image: url('../images/ebook-bg-2.png');
   background-position: 50% 0;
@@ -2767,6 +2778,12 @@ figcaption {
 
 .home-hero.ebook-2-bg.h-100vh {
   height: 100vh;
+}
+
+.home-hero.ebook-2-bg.h-100vh.bg29-ebook-2 {
+  background-image: url('../images/bg29-ebook-2.png');
+  background-position: 50% 0;
+  background-size: cover;
 }
 
 .home-hero.ebook-3-bg {
@@ -2779,6 +2796,12 @@ figcaption {
   height: 100vh;
 }
 
+.home-hero.ebook-3-bg.h-100vh.bg29-ebook-3 {
+  background-image: url('../images/bg29-ebook-3.png');
+  background-position: 50%;
+  background-size: cover;
+}
+
 .home-hero.ebook-4-bg {
   background-image: url('../images/ebook-bg-4.png');
   background-repeat: repeat;
@@ -2789,6 +2812,12 @@ figcaption {
   height: 100vh;
 }
 
+.home-hero.ebook-4-bg.h-100vh.bg29-ebook-4 {
+  background-image: url('../images/bg29-ebook-4.png');
+  background-position: 50%;
+  background-size: cover;
+}
+
 .home-hero.ebook-5-bg {
   background-image: url('../images/ebook-bg-5.png');
   background-repeat: repeat;
@@ -2797,6 +2826,13 @@ figcaption {
 
 .home-hero.ebook-5-bg.h-100vh {
   height: 100vh;
+}
+
+.home-hero.ebook-5-bg.h-100vh.bg29-ebook-5 {
+  background-image: url('../images/bg29-ebook-5.png');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 ._w-50 {
@@ -5340,6 +5376,8 @@ figcaption {
 
   .home-hero.bg-new-lander1.home-vh100 {
     height: auto;
+    background-image: url('../images/bg-1-1.png');
+    background-position: 50%;
   }
 
   .home-hero.bg-new-lander3 {
@@ -5372,6 +5410,10 @@ figcaption {
     height: auto;
   }
 
+  .home-hero.ebook-2-bg.h-100vh.bg29-ebook-2 {
+    padding-top: 100px;
+  }
+
   .home-hero.ebook-3-bg {
     background-image: url('../images/ebook-bg-3.png');
     background-position: 25% 0;
@@ -5379,8 +5421,32 @@ figcaption {
     background-size: cover;
   }
 
-  .home-hero.ebook-3-bg.h-100vh, .home-hero.ebook-4-bg.h-100vh, .home-hero.ebook-5-bg.h-100vh {
+  .home-hero.ebook-3-bg.h-100vh {
     height: auto;
+  }
+
+  .home-hero.ebook-3-bg.h-100vh.bg29-ebook-3 {
+    background-image: url('../images/bg29-ebook-3-md.png');
+    padding-top: 100px;
+  }
+
+  .home-hero.ebook-4-bg.h-100vh {
+    height: auto;
+  }
+
+  .home-hero.ebook-4-bg.h-100vh.bg29-ebook-4 {
+    background-image: url('../images/bg29-ebook-4-md.png');
+    padding-top: 100px;
+  }
+
+  .home-hero.ebook-5-bg.h-100vh {
+    height: auto;
+  }
+
+  .home-hero.ebook-5-bg.h-100vh.bg29-ebook-5 {
+    background-image: url('../images/bg29-ebook-5-md.png');
+    background-repeat: no-repeat;
+    padding-top: 100px;
   }
 
   .hero-h1 {
@@ -5848,6 +5914,14 @@ figcaption {
     padding-bottom: 40px;
   }
 
+  .home-hero.bg-new-lander3.h-100vh {
+    background-position: 0%;
+  }
+
+  .home-hero.bg-new-lander5.h-100vh {
+    background-position: 50%;
+  }
+
   .hero-h1 {
     font-size: 50px;
   }
@@ -6280,17 +6354,32 @@ figcaption {
     background-size: auto 100%;
   }
 
+  .home-hero.bg-new-lander1.home-vh100 {
+    background-size: cover;
+  }
+
   .home-hero.bg-new-lander2 {
-    background-image: url('../images/lander2.png'), linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
-    background-position: 58%, 0 0;
+    background-image: url('../images/bg-2-2.png');
+    background-position: 50%;
+    background-repeat: repeat;
+    background-size: cover;
   }
 
   .home-hero.bg-new-lander3 {
     background-position: 30%;
   }
 
+  .home-hero.bg-new-lander3.h-100vh {
+    background-image: url('../images/bg-3-2.png');
+  }
+
   .home-hero.bg-new-lander5 {
     background-position: 25%;
+  }
+
+  .home-hero.bg-new-lander5.h-100vh {
+    background-image: url('../images/bg-5-2.png');
+    background-position: 50%;
   }
 
   .home-hero.ebook-1-bg {
@@ -6307,11 +6396,21 @@ figcaption {
     background-size: cover;
   }
 
+  .home-hero.ebook-2-bg.h-100vh.bg29-ebook-2 {
+    background-image: url('../images/bg29-ebook-2-sm.png');
+    background-position: 50%;
+    padding-top: 80px;
+  }
+
   .home-hero.ebook-3-bg {
     background-image: url('../images/ebook-bg-3-sm.png');
     background-position: 50% 0;
     background-repeat: repeat-y;
     background-size: cover;
+  }
+
+  .home-hero.ebook-3-bg.h-100vh.bg29-ebook-3 {
+    padding-top: 80px;
   }
 
   .home-hero.ebook-4-bg {
@@ -6321,11 +6420,21 @@ figcaption {
     background-size: cover, auto;
   }
 
+  .home-hero.ebook-4-bg.h-100vh.bg29-ebook-4 {
+    background-image: url('../images/bg29-ebook-4-md.png'), linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+    background-position: 0%, 0 0;
+    padding-top: 80px;
+  }
+
   .home-hero.ebook-5-bg {
     background-image: url('../images/ebook-bg-5-sm.png'), linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
     background-position: 50% 0, 0 0;
     background-repeat: no-repeat, repeat;
     background-size: cover, auto;
+  }
+
+  .home-hero.ebook-5-bg.h-100vh.bg29-ebook-5 {
+    padding-top: 80px;
   }
 
   .hero-h1 {
