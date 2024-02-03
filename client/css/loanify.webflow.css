@@ -2678,6 +2678,25 @@ figcaption {
 
 .home-hero.bg-v2.home-100vh {
   height: 100vh;
+  background-image: url('../images/pretty-woman-with-her-daughter-outdoor-2.png');
+}
+
+.home-hero.bg-v2.home-100vh.v12-2 {
+  background-image: url('../images/pretty-woman-with-her-daughter-outdoor-3-min.png');
+  background-position: 50% 0;
+}
+
+.home-hero.bg-v2.home-100vh.v12-3 {
+  background-image: url('../images/Group-1171274972-1.png');
+}
+
+.home-hero.bg-v2.home-100vh.v12-4 {
+  background-image: url('../images/imagesaved-3.png');
+}
+
+.home-hero.bg-v2.home-100vh.v12-5 {
+  background-image: url('../images/support-celebrate-black-single-mother-led-family-02-v-2.png');
+  background-size: cover;
 }
 
 .home-hero.e-book-background {
@@ -5362,6 +5381,17 @@ figcaption {
     height: auto;
   }
 
+  .home-hero.bg-v2.home-100vh.v12-2 {
+    background-image: url('../images/pretty-woman-with-her-daughter-outdoor-3-min.png');
+    background-position: 50%;
+    background-size: cover;
+  }
+
+  .home-hero.bg-v2.home-100vh.v12-5 {
+    background-image: url('../images/support-celebrate-black-single-mother-led-family-02-v-3.png');
+    background-size: cover;
+  }
+
   .home-hero.e-book-background.new-bg.min-height-100vh-img {
     background-image: linear-gradient(to bottom, null, null);
     background-position: 0 0;
@@ -5909,6 +5939,11 @@ figcaption {
     background-size: cover;
   }
 
+  .home-hero.bg-v2.home-100vh.v12-5 {
+    background-image: url('../images/support-celebrate-black-single-mother-led-family-02-v-3.png');
+    background-size: cover;
+  }
+
   .home-hero.e-book-background.new-bg {
     padding-top: 100px;
     padding-bottom: 40px;
@@ -6327,6 +6362,10 @@ figcaption {
 
   .home-hero.bg-v2 {
     background-position: 60%;
+    background-size: auto 100%;
+  }
+
+  .home-hero.bg-v2.home-100vh.v12-3 {
     background-size: auto 100%;
   }
 
