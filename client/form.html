@@ -47,10 +47,7 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script>
     var url = window.location.href;
-    if (url.includes('?')) {
-      console.log('Parameterised URL');
-    } else {
-      //var newUrl = new URL(url+'/?');
+    if (!url.includes('?')) {
       var parm = JSON.parse(localStorage.getItem("_ud"));
       var fn = encodeURIComponent(parm['first_name']);
       var ln = encodeURIComponent(parm['last_name']);
@@ -58,7 +55,18 @@
       var phone = encodeURIComponent(parm['phone']);
       var newUrl = url + '?firstname=' + fn + '&lastname=' + ln + '&phone=' + phone + '&email=' + email;
       window.location.replace(newUrl);
-    }
+    } else {
+      const searchParams = new URLSearchParams(url);
+      if (!searchParams.has('lastname')) {
+        var parm = JSON.parse(localStorage.getItem("_ud"));
+        var fn = encodeURIComponent(parm['first_name']);
+        var ln = encodeURIComponent(parm['last_name']);
+        var email = encodeURIComponent(parm['email']);
+        var phone = encodeURIComponent(parm['phone']);
+        var newUrl = url + '&firstname=' + fn + '&lastname=' + ln + '&phone=' + phone + '&email=' + email;
+        window.location.replace(newUrl);
+      }
+    }	
   </script>
   <!--   Meta Pixel Code   -->
   <script>
