@@ -2872,6 +2872,68 @@ figcaption {
   background-size: cover;
 }
 
+.home-hero.bg-doc-upload {
+  background-image: url('../images/upd-dog-bg-lg.png');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-hero.bg-doc-upload.home-100vh {
+  height: 100vh;
+  background-image: url('../images/768.png');
+  background-position: 50%;
+  background-size: cover;
+}
+
+.home-hero.bg-doc-upload.home-100vh.v12-2 {
+  background-image: url('../images/pretty-woman-with-her-daughter-outdoor-3-min.png');
+  background-position: 50% 0;
+}
+
+.home-hero.bg-doc-upload.home-100vh.v12-3 {
+  background-image: url('../images/Group-1171274972-1.png');
+}
+
+.home-hero.bg-doc-upload.home-100vh.v12-4 {
+  background-image: url('../images/imagesaved-3.png');
+}
+
+.home-hero.bg-doc-upload.home-100vh.v12-5 {
+  background-image: url('../images/support-celebrate-black-single-mother-led-family-02-v-2.png');
+  background-size: cover;
+}
+
+.home-hero.bg-doc-upload.home-100vh.lander1spa {
+  background-image: url('../images/Ad.png');
+}
+
+.home-hero.bg-doc-upload.home-100vh.lander2-spa {
+  background-image: url('../images/1280.png');
+}
+
+.home-hero.bg-doc-upload.home-100vh.lander3-spa {
+  background-image: url('../images/1280-1.png');
+}
+
+.home-hero.bg-doc-upload.home-100vh.lander4-spa {
+  background-image: url('../images/Ad-12.png');
+}
+
+.home-hero.bg-doc-upload.min-height-100vh {
+  min-height: 100vh;
+}
+
+.home-hero.bg-doc-upload.min-height-100vh.py-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.home-hero.bg-doc-upload.min-height-100vh.py-80 {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 ._w-50 {
   width: 50%;
 }
@@ -3616,8 +3678,25 @@ figcaption {
   display: flex;
 }
 
+.lp-v2-d-flex.gap-40 {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+}
+
+.lp-v2-d-flex.gap-40.mt-80 {
+  margin-top: 80px;
+}
+
+.lp-v2-d-flex.gap-40.align-stretch {
+  align-items: stretch;
+}
+
 ._w-55-lp-v2 {
   width: 60%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
 }
 
 ._w-55-lp-v2.d-flex-column {
@@ -4450,6 +4529,155 @@ figcaption {
   margin-right: auto;
 }
 
+.u-doc-h1 {
+  max-width: 650px;
+  color: var(--white);
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 36px;
+  line-height: 120%;
+}
+
+.u-doc-h1.text-38px {
+  font-size: 38px;
+}
+
+.card-50 {
+  width: 100%;
+  background-color: rgba(255, 255, 255, .2);
+  border-radius: 12px;
+  padding: 20px 30px;
+}
+
+.doc-card-title {
+  color: #fff;
+  text-align: center;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.hero-p-doc-upload {
+  color: var(--black);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-family: Manrope, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.hero-p-doc-upload.text-white {
+  max-width: 650px;
+  color: var(--white);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+}
+
+.hero-p-doc-upload.text-white.text-22px {
+  font-size: 22px;
+}
+
+.hero-p-doc-upload.text-white.text-22px.lh-120 {
+  line-height: 120%;
+}
+
+.doc-card-table {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-direction: column;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.tr-doc-upd {
+  background-color: #fff;
+  border-radius: 3px;
+  justify-content: space-between;
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 110%;
+  display: flex;
+}
+
+.tr-doc-upd.th-doc-upd {
+  color: #1da1f2;
+  font-weight: 700;
+}
+
+.tr-doc-upd.th-doc-upd.bg-blue {
+  background-color: #e8f6fe;
+}
+
+.table-cell {
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15%;
+}
+
+.upd-doc-caption {
+  color: #fff;
+}
+
+.doc-card-caption {
+  color: #fff;
+  text-align: center;
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.d-flex-column {
+  flex-direction: column;
+  display: flex;
+}
+
+.d-flex-column.h-100 {
+  height: 100%;
+}
+
+.doc-form-wrapper {
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.div-block-33 {
+  background-color: #ea0c0c;
+}
+
+.max-width-626px-lg-818 {
+  max-width: 626px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-width-626px-lg-818.mt-50px {
+  margin-top: 50px;
+}
+
+.max-w-1000-lg-1200 {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.html-embed-5 {
+  max-width: 500px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (min-width: 1280px) {
   .testimonial-bottom-text {
     margin-top: 140px;
@@ -4592,6 +4820,46 @@ figcaption {
   .vd-wrapper {
     width: 80%;
   }
+
+  .u-doc-h1 {
+    font-size: 46px;
+  }
+
+  .u-doc-h1.text-38px {
+    font-size: 48px;
+  }
+
+  .doc-card-title {
+    font-size: 29px;
+  }
+
+  .hero-p-doc-upload {
+    font-size: 26px;
+  }
+
+  .hero-p-doc-upload.text-white.text-22px {
+    font-size: 25px;
+  }
+
+  .tr-doc-upd {
+    font-size: 22px;
+  }
+
+  .doc-card-caption {
+    font-size: 18px;
+  }
+
+  .max-width-626px-lg-818 {
+    max-width: 818px;
+  }
+
+  .max-width-626px-lg-818.mt-50px {
+    margin-top: 80px;
+  }
+
+  .max-w-1000-lg-1200 {
+    max-width: 1300px;
+  }
 }
 
 @media screen and (min-width: 1920px) {
@@ -4658,6 +4926,10 @@ figcaption {
     background-position: 0%, 50%;
     background-repeat: repeat, no-repeat;
     background-size: cover, cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander3-spa {
+    background-image: url('../images/240-2.png');
   }
 
   .hero-h1 {
@@ -4737,6 +5009,10 @@ figcaption {
   .btnwrap {
     width: 100%;
     margin-bottom: 0;
+  }
+
+  .hero-p-doc-upload {
+    font-size: 28px;
   }
 }
 
@@ -5523,6 +5799,46 @@ figcaption {
     padding-top: 100px;
   }
 
+  .home-hero.bg-doc-upload {
+    background-image: url('../images/upd-dog-bg-md.png');
+  }
+
+  .home-hero.bg-doc-upload.home-100vh {
+    height: auto;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.v12-2 {
+    background-image: url('../images/pretty-woman-with-her-daughter-outdoor-3-min.png');
+    background-position: 50%;
+    background-size: cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.v12-5 {
+    background-image: url('../images/support-celebrate-black-single-mother-led-family-02-v-3.png');
+    background-size: cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander2-spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/768-2.png');
+    background-position: 0 0, 50%;
+    background-repeat: repeat, repeat;
+    background-size: auto, cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander3-spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/768-3.png');
+    background-position: 0 0, 50%;
+    background-repeat: repeat, repeat;
+    background-size: auto, cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander4-spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/768-4.png');
+    background-position: 0 0, 50%;
+    background-repeat: repeat, repeat;
+    background-size: auto, cover;
+  }
+
   .hero-h1 {
     font-size: 58px;
     line-height: 120%;
@@ -5636,6 +5952,19 @@ figcaption {
   .btnwrap {
     width: 100%;
     margin-bottom: 0;
+  }
+
+  .u-doc-h1 {
+    font-size: 36px;
+    line-height: 120%;
+  }
+
+  .doc-card-title {
+    font-size: 27px;
+  }
+
+  .doc-form-wrapper {
+    flex: none;
   }
 }
 
@@ -6021,6 +6350,31 @@ figcaption {
     background-position: 50%;
   }
 
+  .home-hero.bg-doc-upload.home-100vh {
+    background-image: linear-gradient(to bottom, null, null);
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.v12-5 {
+    background-image: url('../images/support-celebrate-black-single-mother-led-family-02-v-3.png');
+    background-size: cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander1spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/480.png');
+    background-position: 0 0, 0 0;
+    background-repeat: repeat, repeat;
+    background-size: auto, auto;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander3-spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/480-2.png');
+    background-position: 0 0, 50%;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander4-spa {
+    background-image: linear-gradient(to bottom, null, null), url('../images/480-3.png');
+  }
+
   .hero-h1 {
     font-size: 50px;
   }
@@ -6099,6 +6453,16 @@ figcaption {
   .amount-form-flex-video {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .doc-card-title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .hero-p-doc-upload {
+    font-size: 18px;
   }
 }
 
@@ -6565,6 +6929,35 @@ figcaption {
     padding-top: 80px;
   }
 
+  .home-hero.bg-doc-upload.home-100vh {
+    background-image: url('../images/new-f-bg.png');
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.v12-3 {
+    background-size: auto 100%;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander1spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/Group-1171274987.png');
+    background-size: auto, cover;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander2-spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/240-1.png');
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander3-spa {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('../images/240-2.png');
+    background-position: 0 0, 50%;
+  }
+
+  .home-hero.bg-doc-upload.home-100vh.lander4-spa {
+    background-image: linear-gradient(to bottom, null, null), url('../images/240-3.png');
+  }
+
   .hero-h1 {
     font-size: 30px;
   }
@@ -6681,6 +7074,24 @@ figcaption {
 
   .paragraph-9 {
     font-size: 16px;
+  }
+
+  .u-doc-h1 {
+    font-size: 24px;
+  }
+
+  .card-50 {
+    padding: 16px 20px;
+  }
+
+  .tr-doc-upd {
+    font-size: 14px;
+  }
+
+  .table-cell {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 10%;
   }
 }
 
