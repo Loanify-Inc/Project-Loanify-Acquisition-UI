@@ -2,7 +2,7 @@
   --deep-sky-blue: #08a3d1;
   --yellow: #fef922;
   --white: white;
-  --dim-grey: #737373;
+  --loanify-blue: #1da1f2;
   --royal-blue: #0b72f1;
   --dark-slate-grey: #393939;
   --black: black;
@@ -1526,7 +1526,7 @@ figcaption {
 }
 
 .process-description {
-  color: var(--dim-grey);
+  color: var(--loanify-blue);
   font-size: 14px;
   font-weight: 600;
 }
@@ -1638,7 +1638,7 @@ figcaption {
 }
 
 .footer-wrap {
-  color: var(--dim-grey);
+  color: var(--loanify-blue);
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -4676,6 +4676,10 @@ figcaption {
   margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+.payday-loans {
+  color: var(--loanify-blue);
 }
 
 @media screen and (min-width: 1280px) {
