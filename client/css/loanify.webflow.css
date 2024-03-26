@@ -8,6 +8,7 @@
   --black: black;
   --white-2: #fafafa;
   --ffce4c: #ffce4c;
+  --gold: var(--ffce4c);
   --steel-blue: #0086ad;
 }
 
@@ -4774,6 +4775,10 @@ figcaption {
 
 .text-span-7 {
   color: var(--ffce4c);
+}
+
+.standout {
+  color: var(--gold);
 }
 
 @media screen and (min-width: 1280px) {
